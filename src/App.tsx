@@ -1,19 +1,19 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import AppNavigator from './navigation/AppNavigator';
+import Orientation from 'react-native-orientation-locker';
 
 const App = () => {
+
+  useEffect(() => {
+    Orientation.lockToPortrait();
+  }, []);
+
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <SafeAreaProvider>
-          <NavigationContainer>
-            <AppNavigator />
-          </NavigationContainer>
-      </SafeAreaProvider>
-    </GestureHandlerRootView>
+    <NavigationContainer>
+      <AppNavigator />
+    </NavigationContainer>
   );
 };
 
